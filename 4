@@ -1,0 +1,51 @@
+class WorkingWithFiles:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def characters(self):
+        n = 0;
+        f = open(self.filename, 'r')
+        s = ''
+        for x in f:
+            s += x
+        for x in s:
+            n += 1
+        f.close()
+        return n
+
+    def words(self):
+        n = 0;
+        f = open(self.filename, 'r')
+        s = ''
+        for x in f:
+            s += x
+
+        p = 1
+        for x in s:
+            if not x.isalpha():
+                if p == 1:
+                    p = 0
+                    n += 1
+            else:
+                p = 1
+        f.close()
+        return n
+
+    def sentences(self):
+        n = 0;
+        f = open(self.filename, 'r')
+        s = ''
+        for x in f:
+            s += x
+
+        p = 1
+        for x in s:
+            if x not in '.!?':
+                if p == 1:
+                    p = 0
+                    n += 1
+            else:
+                p = 1
+        f.close()
+        return n
+
