@@ -1,0 +1,28 @@
+class Rectangle:
+    def __init__(self, length=1.0, width=1.0):
+        self.width = width
+        self.length = length
+
+    def get_width(self):
+        return self.width
+
+    def set_width(self, width):
+        if 0 < width < 20:
+            self.width = width
+        else:
+            print('width must be >0 and <20')
+
+    def get_length(self):
+        return self.length
+
+    def set_length(self, length):
+        if 0 < length < 20:
+            self.length = length
+        else:
+            print('length must be >0 and <20')
+
+    def perimeter(self):
+        return 2 * (self.width + self.length)
+
+    def area(self):
+        return self.width * self.length
