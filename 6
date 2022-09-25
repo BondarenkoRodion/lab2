@@ -1,0 +1,78 @@
+class Node:
+    def __init__(self, code, price, quantity=0):
+        self.left = None
+        self.right = None
+        self.code = code
+        self.price = price
+        self.quantity = quantity
+
+
+class Tree:
+    def __init__(self):
+        self.root = None
+
+    def add(self, node):
+        if self.root is None:
+            self.root = node
+        else:
+            p = self.root
+            f = True
+            while f:
+                if node.code < p.code:
+                    if p.left is None:
+                        p.left = node
+                        f = False
+                    else:
+                        p = p.left
+                else:
+                    if p.right is None:
+                        p.right = node
+                        f = False
+                    else:
+                        p = p.right
+
+    def find(self, code):
+        p = self.root
+        while p.code != code:
+            if code < p.code:
+                p = p.left
+            else:
+                p = p.right
+        return p
+
+    def sum(self):
+        queue = [self.root]
+        s = 0
+        while len(queue):
+            p = queue.pop()
+            if p.left:
+                queue.append(p.left)
+            if p.right:
+                queue.append(p.right)
+            s += p.price * p.quantity
+        return s
+
+
+p1 = Node(5, 1)
+p2 = Node(12, 2)
+p3 = Node(23, 3)
+p4 = Node(1, 4)
+p5 = Node(4, 5)
+
+tree = Tree()
+tree.add(p1)
+tree.add(p2)
+tree.add(p3)
+tree.add(p4)
+tree.add(p5)
+
+inp = input()
+c = 0
+q = 0
+while inp != '':
+    c = int(inp[0:inp.index(' ')])
+    q = int(inp[inp.index(' '): len(inp)])
+    tree.find(c).quantity = q
+    inp = input()
+
+print(tree.sum())
