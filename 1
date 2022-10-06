@@ -1,7 +1,13 @@
 class Rectangle:
     def __init__(self, length=1.0, width=1.0):
-        self.width = width
-        self.length = length
+        if 0 < width < 20:
+            self.width = width
+        else:
+            print('width must be >0 and <20')
+        if 0 < length < 20:
+            self.length = length
+        else:
+            print('length must be >0 and <20')
 
     def get_width(self):
         return self.width
