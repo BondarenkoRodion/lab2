@@ -1,14 +1,22 @@
 class Product:
     def __init__(self, price, description):
+        if not isinstance(price, int):
+            raise Exception("Price must be an int")
+        if price <= 0:
+            raise Exception("Price must be greater that 0")
         self.price = price
         self.description = description
 
+    def str(self):
+        return "Product with description: " + self.description + ". Costs " + str(self.price)
 
 class Customer:
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
 
+    def str(self):
+        return "Customer " + self.name + " " + self.surname
 
 class Order:
     def __init__(self, customer, products):
