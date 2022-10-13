@@ -16,18 +16,18 @@ class Tree:
             self.root = node
         else:
             p = self.root
-            f = True
-            while f:
+            unfinished = True
+            while unfinished:
                 if node.code < p.code:
                     if p.left is None:
                         p.left = node
-                        f = False
+                        unfinished = False
                     else:
                         p = p.left
                 else:
                     if p.right is None:
                         p.right = node
-                        f = False
+                        unfinished = False
                     else:
                         p = p.right
 
@@ -42,15 +42,15 @@ class Tree:
 
     def sum(self):
         queue = [self.root]
-        s = 0
+        current_sum = 0
         while len(queue):
             p = queue.pop()
             if p.left:
                 queue.append(p.left)
             if p.right:
                 queue.append(p.right)
-            s += p.price * p.quantity
-        return s
+            current_sum += p.price * p.quantity
+        return current_sum
 
 
 p1 = Node(5, 1)
@@ -67,12 +67,12 @@ tree.add(p4)
 tree.add(p5)
 
 inp = input()
-c = 0
-q = 0
+code = 0
+quantity_of_products = 0
 while inp != '':
-    c = int(inp[0:inp.index(' ')])
-    q = int(inp[inp.index(' '): len(inp)])
-    tree.find(c).quantity = q
+    code = int(inp[0:inp.index(' ')])
+    quantity_of_products = int(inp[inp.index(' '): len(inp)])
+    tree.find(code).quantity = quantity_of_products
     inp = input()
 
 print(tree.sum())
