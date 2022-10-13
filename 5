@@ -16,22 +16,22 @@ class Student:
 
 class Group:
     def __init__(self, students, max_students = 25):
-        self.__students__ = students
+        self.__students = students
         self.max_students = max_students
-        self.__number_of_students__ = 0
+        self.__number_of_students = 0
 
     def get5best(self):
         m = 0
         r = []
         for c in range(0, 5):
             m = 0
-            b = self.__students__[0]
-            for i in range(0, len(self.__students__)):
-                if self.__students__[i].getAverage() > m:
-                    m = self.__students__[i].getAverage()
+            b = self.__students[0]
+            for i in range(0, len(self.__students)):
+                if self.__students[i].getAverage() > m:
+                    m = self.__students[i].getAverage()
 
-                    if self.__students__[i] not in r:
-                        b = self.__students__[i]
+                    if self.__students[i] not in r:
+                        b = self.__students[i]
             r.append(b)
 
         return r
@@ -39,12 +39,12 @@ class Group:
     def add_student(self, student):
         if not isinstance(student, Student):
             raise Exception("This is not a student")
-        elif student in self.__students__:
+        elif student in self.__students:
             raise Exception("The student is already in the group")
-        elif self.__number_of_students__ >= self.max_students:
+        elif self.__number_of_students >= self.max_students:
             raise Exception("There is already max number of students")
         else:
-            self.__students__.append(student)
+            self.__students.append(student)
 
 
 s1 = Student("n1", "s1", "r1", [1, 2, 4, 5, 6, 7])
