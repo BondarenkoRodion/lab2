@@ -5,26 +5,46 @@ class Product:
         if price <= 0:
             raise Exception("Price must be greater that 0")
         self.price = price
-        self.description = description
+        if isinstance(description, str):
+            self.description = description
+        else:
+            raise Exception("description must be of type str")
 
     def str(self):
         return "Product with description: " + self.description + ". Costs " + str(self.price)
 
+
 class Customer:
     def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
+        if isinstance(name, str):
+            self.name = name
+        else:
+            raise Exception("name must be of type str")
+        if isinstance(name, str):
+            self.surname = surname
+        else:
+            raise Exception("surname must be of type str")
 
     def str(self):
         return "Customer " + self.name + " " + self.surname
 
+
 class Order:
     def __init__(self, customer, products):
-        self.customer = customer
-        self.products = products
+        if isinstance(customer, Customer):
+            self.customer = customer
+        else:
+            raise Exception("customer must be of type Customer")
+        no_issues = 1
+        for product in products:
+            if not isinstance(product, Product):
+                no_issues = 0
+                raise Exception("all products must be of type Product")
+        if no_issues:
+            self.products = products
 
     def calculate_value(self):
-        r = 0
-        for p in self.products:
-            r += p.price
-        return r
+        value = 0
+        for product in self.products:
+            value += product.price
+        return value
