@@ -35,14 +35,11 @@ class Order:
             self.customer = customer
         else:
             raise Exception("customer must be of type Customer")
-        no_issues = 1
-        for product in products:
-            if not isinstance(product, Product):
-                no_issues = 0
-                raise Exception("all products must be of type Product")
-        if no_issues:
+        if all(isinstance(product, Product) for product in products):
             self.products = products
-
+        else:
+            raise Exception("all products must be of type Product")
+        
     def calculate_value(self):
         value = 0
         for product in self.products:
