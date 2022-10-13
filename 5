@@ -6,12 +6,12 @@ class Student:
         self.grades = grades
 
     def getAverage(self):
-        c = 0
-        i = 0
-        for g in self.grades:
-            i += 1
-            c += g
-        return c / g
+        total_grade = 0
+        number = 0
+        for grade in self.grades:
+            number += 1
+            total_grade += grade
+        return total_grade / number
 
 
 class Group:
@@ -21,20 +21,19 @@ class Group:
         self.__number_of_students = 0
 
     def get5best(self):
-        m = 0
-        r = []
-        for c in range(0, 5):
-            m = 0
-            b = self.__students[0]
+        max_grade = 0
+        result = []
+        for repetitions in range(0, 5):
+            max_grade = 0
+            student = self.__students[0]
             for i in range(0, len(self.__students)):
-                if self.__students[i].getAverage() > m:
-                    m = self.__students[i].getAverage()
+                if self.__students[i].getAverage() > max_grade:
+                    max_grade = self.__students[i].getAverage()
 
-                    if self.__students[i] not in r:
-                        b = self.__students[i]
-            r.append(b)
-
-        return r
+                    if self.__students[i] not in result:
+                        student = self.__students[i]
+            result.append(student)
+        return result
 
     def add_student(self, student):
         if not isinstance(student, Student):
@@ -56,11 +55,11 @@ s6 = Student("n6", "s6", "r6", [6, 5, 5, 3, 2, 5])
 s7 = Student("n7", "s7", "r7", [7, 6, 5, 4, 3, 2])
 s8 = Student("n8", "s8", "r8", [6, 5, 4, 3, 3, 1])
 
-s = [s1, s2, s3, s4, s5, s6, s7]
+students = [s1, s2, s3, s4, s5, s6, s7]
 
-group = Group(s, 15)
+group = Group(students, 15)
 group.add_student(s8)
 
-a = group.get5best()
-for i in a:
+five_best = group.get5best()
+for i in five_best:
     print(i.name)
