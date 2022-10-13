@@ -3,11 +3,11 @@ class Rectangle:
         if 0 < width < 20:
             self.width = width
         else:
-            print('width must be >0 and <20')
+            raise Exception('width must be >0 and <20')
         if 0 < length < 20:
             self.length = length
         else:
-            print('length must be >0 and <20')
+            raise Exception('length must be >0 and <20')
 
     def get_width(self):
         return self.width
@@ -16,7 +16,7 @@ class Rectangle:
         if 0 < width < 20:
             self.width = width
         else:
-            print('width must be >0 and <20')
+            raise Exception('width must be >0 and <20')
 
     def get_length(self):
         return self.length
@@ -25,7 +25,7 @@ class Rectangle:
         if 0 < length < 20:
             self.length = length
         else:
-            print('length must be >0 and <20')
+            raise Exception('length must be >0 and <20')
 
     def perimeter(self):
         return 2 * (self.width + self.length)
