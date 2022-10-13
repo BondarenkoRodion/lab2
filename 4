@@ -3,49 +3,41 @@ class WorkingWithFiles:
         self.filename = filename
 
     def characters(self):
-        n = 0;
-        f = open(self.filename, 'r')
-        s = ''
-        for x in f:
-            s += x
-        for x in s:
-            n += 1
-        f.close()
-        return n
+        length = 0
+        file = open(self.filename, 'r')
+        for line in file:
+            for character in line:
+                length += 1
+        file.close()
+        return length
 
     def words(self):
-        n = 0;
-        f = open(self.filename, 'r')
-        s = ''
-        for x in f:
-            s += x
-
-        p = 1
-        for x in s:
-            if not x.isalpha():
-                if p == 1:
-                    p = 0
-                    n += 1
-            else:
-                p = 1
-        f.close()
-        return n
+        length = 0
+        file = open(self.filename, 'r')
+        for line in file:
+            previous_alpha = 1
+            for character in line:
+                if not character.isalpha():
+                    if previous_alpha == 1:
+                        previous_alpha = 0
+                        length += 1
+                else:
+                    previous_alpha = 1
+        file.close()
+        return length
 
     def sentences(self):
-        n = 0;
-        f = open(self.filename, 'r')
-        s = ''
-        for x in f:
-            s += x
-
-        p = 1
-        for x in s:
-            if x not in '.!?':
-                if p == 1:
-                    p = 0
-                    n += 1
-            else:
-                p = 1
-        f.close()
-        return n
+        length = 0
+        file = open(self.filename, 'r')
+        previous_punctuation = 1
+        for line in file:
+            for character in line:
+                if character not in '.!?':
+                    if previous_punctuation == 1:
+                        previous_punctuation = 0
+                        length += 1
+                else:
+                    previous_punctuation = 1
+        file.close()
+        return length
 
